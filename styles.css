@@ -37,3 +37,6 @@ input,select{transition:border-color .18s,box-shadow .18s,background .18s}input:
 @media(prefers-reduced-motion:no-preference){.intro,.survey-panel{animation:soft-entrance .45s ease-out both}.survey-panel{animation-delay:.08s}.activity-row{animation:soft-entrance .22s ease-out both}.notice:not([hidden]){animation:soft-entrance .2s ease-out both}@keyframes soft-entrance{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}}
 @media(prefers-reduced-motion:reduce){.progress-fill,input,select,.save-button,.add-button{transition:none!important}}
 @media(max-width:600px){body{background-attachment:scroll}.form-progress{padding:12px}.progress-heading{font-size:12px}.progress-help{font-size:12px}.leaf-icon{border-radius:13px;padding:6px}.history-list li{padding-left:10px}}
+
+/* User-provided banner: preserve the full artwork on every screen. */
+.brand-banner{width:min(100%,1440px);margin:24px auto 0;padding:0 32px}.brand-banner img{display:block;width:100%;height:auto;aspect-ratio:4/1;object-fit:contain;border-radius:14px;box-shadow:0 8px 28px #0003}.brand-banner+.layout{padding-top:36px}@media(max-width:1024px){.brand-banner{margin-top:20px;padding:0 28px}}@media(max-width:600px){.brand-banner{padding:0;margin-top:0}.brand-banner img{border-radius:0}.brand-banner+.layout{padding-top:24px}}
