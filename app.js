@@ -168,3 +168,31 @@
   window.addEventListener('beforeunload', event => { if(saving) {event.preventDefault(); event.returnValue = ''; } });
   addActivity(false); loadUnits();
 })();
+
+/* Form readiness indicator: never represents server save status. */
+(() => {
+  'use strict';
+  const form=document.getElementById('survey-form');
+  if(!form)return;
+  const panel=document.createElement('div');panel.className='form-progress';
+  const heading=document.createElement('div');heading.className='progress-heading';
+  const title=document.createElement('span');title.textContent='ความพร้อมของข้อมูล';
+  const count=document.createElement('span');count.className='progress-count';
+  const track=document.createElement('div');track.className='progress-track';
+  track.setAttribute('role','progressbar');track.setAttribute('aria-label','จำนวนส่วนที่กรอกครบ');track.setAttribute('aria-valuemin','0');track.setAttribute('aria-valuemax','4');
+  const fill=document.createElement('span');fill.className='progress-fill';track.append(fill);
+  const help=document.createElement('p');help.className='progress-help';help.textContent='เลือกเขต · เลือกหน่วยงาน · ระบุชื่อ · เพิ่มกิจกรรม';
+  heading.append(title,count);panel.append(heading,track,help);form.before(panel);
+  function update(){
+    const zone=document.getElementById('zone'),unit=document.getElementById('unit'),reporter=document.getElementById('reporter-name'),activities=document.getElementById('activities');
+    const states=[!!zone.value,!!unit.value,!!reporter.value.trim(),Array.from(activities.querySelectorAll('input')).some(input=>!!input.value.trim())];
+    const total=states.filter(Boolean).length;
+    count.textContent=total+' / 4 ส่วน';fill.style.width=(total*25)+'%';track.setAttribute('aria-valuenow',String(total));
+    help.textContent=total===4?'กรอกครบแล้ว กรุณาตรวจสอบข้อมูลและกดบันทึก':'เลือกเขต · เลือกหน่วยงาน · ระบุชื่อ · เพิ่มกิจกรรม';
+    help.classList.toggle('completion-mark',total===4);
+    [zone,unit,reporter,activities].forEach((element,i)=>element.closest('.field-section')?.classList.toggle('is-complete',states[i]));
+  }
+  form.addEventListener('input',update);form.addEventListener('change',update);
+  new MutationObserver(update).observe(document.getElementById('activities'),{childList:true});
+  update();
+})();
