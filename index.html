@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>พระหฤทัยรักษ์โลก</title>
+  <meta charset="UTF-8">
+  <base target="_top">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#survey">ข้ามไปยังแบบสำรวจ</a>
+  <header class="site-header">
+    <div class="header-inner">
+      <span class="wordmark">พระหฤทัยรักษ์โลก<span class="wordmark-dot" aria-hidden="true"></span></span>
+      <span class="organization">คณะภคินีพระหฤทัยของพระเยซูเจ้าแห่งกรุงเทพฯ</span>
+    </div>
+  </header>
+  <main class="layout">
+    <section class="intro" aria-labelledby="page-title">
+      <div class="leaf-icon" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none"><path d="M39 8C17 7 7 17 12 30c7 17 29 7 27-22Z" stroke="currentColor" stroke-width="2"/><path d="M8 40 30 18M18 30l-1-9m8 2 9-1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div>
+      <p class="eyebrow">ร่วมดูแลบ้านส่วนรวมของเรา</p>
+      <h1 id="page-title">พระหฤทัย<br><span>รักษ์โลก</span></h1>
+      <h2>ระบบสำรวจโครงการและกิจกรรม<br class="desktop-break">ด้านสิ่งแวดล้อม</h2>
+      <p class="intro-description">ร่วมรวบรวมโครงการและกิจกรรมด้านสิ่งแวดล้อมที่กำลังดำเนินการอยู่ในปัจจุบัน เพื่อร่วมกันดูแลบ้านส่วนรวมของเรา</p>
+      <div class="intro-note"><span aria-hidden="true">01 — 03</span><p>เลือกหน่วยงาน บอกเล่ากิจกรรม<br>แล้วร่วมเป็นส่วนหนึ่งของการดูแลโลก</p></div>
+      <p class="privacy-note">ไม่ต้องเข้าสู่ระบบหรือกรอกอีเมล<br>เลือกเขตและหน่วยงานเพื่อดูข้อมูลย้อนหลังได้</p>
+    </section>
+
+    <section class="survey-panel" id="survey" aria-labelledby="form-title">
+      <div class="panel-heading"><span class="section-kicker">แบบสำรวจ</span><span class="current-label">กิจกรรมที่ดำเนินการอยู่ในปัจจุบัน</span></div>
+      <h2 id="form-title">บันทึกกิจกรรมของหน่วยงาน</h2>
+      <p class="panel-description">ระบุชื่อผู้กรอกและกิจกรรม ไม่ต้องแนบเอกสาร<br>บันทึกแล้วกลับมาดูย้อนหลังได้โดยเลือกเขตและหน่วยงาน</p>
+      <div id="demo-banner" class="demo-banner" hidden>โหมดตัวอย่างในเครื่อง — ข้อมูลไม่ถูกส่งไป Google Sheets</div>
+      <p class="field-hint"><a href="https://script.google.com/macros/s/AKfycbxmjJ71Mhnn5Tr25zK8MCZl9MYz3tkVtYEHDqkdNc1uEZBcfE3mxgLwhDARwL3x7U1R/exec">เปิดเว็บสำรอง</a></p>
+<div id="loading" class="loading" role="status">กำลังโหลดรายชื่อหน่วยงาน…</div>
+      <button id="retry-load" class="text-button" type="button" hidden>ลองโหลดรายชื่ออีกครั้ง</button>
+      <form id="survey-form" novalidate>
+        <fieldset id="form-fields" disabled>
+          <div class="field-section">
+            <div class="step-heading"><span class="step-number" aria-hidden="true">1</span><label for="zone">เลือกเขตที่สังกัด <span class="required">*</span></label></div>
+            <select id="zone" name="zone" required aria-describedby="zone-hint"><option value="">เลือกเขตที่สังกัด</option></select>
+            <p class="field-hint" id="zone-hint">เลือกเขตเพื่อแสดงรายชื่อหน่วยงานของท่าน</p>
+          </div>
+          <div class="field-section">
+            <div class="step-heading"><span class="step-number" aria-hidden="true">2</span><label for="unit">เลือกบ้าน / วัด / โรงเรียน / หน่วยงาน <span class="required">*</span></label></div>
+            <select id="unit" name="unit" required disabled aria-describedby="unit-hint"><option value="">กรุณาเลือกเขตก่อน</option></select>
+            <p class="field-hint" id="unit-hint">รายชื่อจะแสดงตามเขตที่เลือก</p>
+          </div>
+          <div class="field-section">
+            <label class="reporter-label" for="reporter-name">ชื่อผู้กรอก <span class="required">*</span></label>
+            <input id="reporter-name" name="reporterName" type="text" maxlength="120" required autocomplete="name" placeholder="ชื่อ–นามสกุลผู้กรอก" aria-describedby="reporter-hint">
+            <p class="field-hint" id="reporter-hint">ชื่อผู้กรอกจะแสดงในประวัติของหน่วยงาน ผู้มีลิงก์สามารถเลือกหน่วยงานเพื่อดูได้</p>
+          </div>
+          <div class="field-section activity-section">
+            <div class="step-heading"><span class="step-number" aria-hidden="true">3</span><h3>ชื่อโครงการ/กิจกรรมด้านสิ่งแวดล้อม<br class="desktop-break">ที่กำลังดำเนินการอยู่ <span class="required">*</span></h3></div>
+            <p class="field-hint activity-hint">หนึ่งชื่อกิจกรรมต่อหนึ่งช่อง เพิ่มได้หลายรายการ</p>
+            <div id="activities"></div>
+            <button id="add-activity" class="add-button" type="button"><span aria-hidden="true">+</span> เพิ่มกิจกรรมอีก</button>
+            <p class="field-hint">ไม่เกิน 200 ตัวอักษรต่อกิจกรรม และ 30 กิจกรรมต่อครั้ง</p>
+          </div>
+          <div class="submit-section">
+            <button id="save" class="save-button" type="submit"><span id="save-label">บันทึกข้อมูล</span><svg aria-hidden="true" viewBox="0 0 24 24" fill="none"><path d="M5 12h14m-5-5 5 5-5 5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            <p class="submit-note">กรุณาตรวจสอบชื่อหน่วยงานและกิจกรรมก่อนบันทึก</p>
+          </div>
+        </fieldset>
+      </form>
+      <div id="notice" class="notice" role="status" aria-live="polite" tabindex="-1" hidden></div>
+      <div class="history-actions"><button id="view-history" class="add-button" type="button">ดูข้อมูลย้อนหลังของหน่วยงานที่เลือก</button><p class="field-hint">เลือกเขตและหน่วยงานด้านบนเพื่อดูรายการที่เคยบันทึกทั้งหมด</p></div>
+      <section id="history-panel" class="history-panel" aria-labelledby="history-title" hidden>
+        <h3 id="history-title">ข้อมูลย้อนหลัง</h3>
+        <p id="history-status" class="field-hint" role="status" aria-live="polite"></p>
+        <ol id="history-list" class="history-list"></ol>
+        <button id="history-more" class="text-button" type="button" hidden>ดูรายการก่อนหน้านี้เพิ่มเติม</button>
+      </section>
+    </section>
+  </main>
+  <footer class="site-footer"><span>พระหฤทัยรักษ์โลก</span><p>ทุกกิจกรรมเล็ก ๆ คือส่วนหนึ่งของการดูแลบ้านส่วนรวม</p></footer>
+  <script src="config.js"></script><script src="api.js"></script><script src="app.js"></script>
+</body>
+</html>
