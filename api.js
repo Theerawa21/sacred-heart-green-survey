@@ -42,6 +42,13 @@
   }
   window.SHG_API={async call(method,payload){
     if(!methods.has(method))throw new Error('คำขอไม่ถูกต้อง');
+    // iOS privacy rules may block the cross-site Google iframe. Use the same form
+    // as a top-level page before any data is entered; no save is retried or replayed.
+    const ios=/iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform==='MacIntel' && navigator.maxTouchPoints>1);
+    if(ios && method==='getUnits'){
+      window.location.replace(window.SHG_CONFIG.webAppUrl);
+      return new Promise((resolve,reject)=>setTimeout(()=>reject(new Error('กรุณากด “เปิดแบบฟอร์มโดยตรง” เพื่อกรอกข้อมูลบน iPhone หรือ iPad')),10000));
+    }
     return (await connect()).call(method,payload);
   }};
 })();
